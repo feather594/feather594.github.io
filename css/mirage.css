@@ -1126,6 +1126,8 @@ footer a {
   font-feature-settings: "kern" 0, "tnum" 1;
   line-height: 1;
   letter-spacing: 0;
+  padding-right: 0.12em;
+  margin-right: -0.12em;
   filter: drop-shadow(0 16px 34px rgba(63, 77, 178, 0.16));
 }
 
