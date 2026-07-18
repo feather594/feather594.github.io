@@ -159,8 +159,8 @@
   function initGutterNetwork(reduceMotion) {
     var board = document.getElementById('board-ctn') || document.getElementById('board');
     var finePointer = window.matchMedia('(pointer: fine)').matches;
-    var minViewport = 1200;
-    var minFieldWidth = 480;
+    var minViewport = 280;
+    var minFieldWidth = 280;
     var topOverlap = 24;
     var disturbanceRadius = 210;
     var cruiseSpeedMin = 0.022;
