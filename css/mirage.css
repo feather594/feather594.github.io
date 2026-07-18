@@ -1112,6 +1112,8 @@ footer a {
 .mirage-404__number {
   position: relative;
   z-index: 2;
+  display: inline-flex;
+  align-items: center;
   color: transparent;
   background: linear-gradient(115deg, var(--mirage-cyan), var(--mirage-violet) 72%);
   background-clip: text;
@@ -1119,9 +1121,28 @@ footer a {
   font-family: var(--mirage-display);
   font-size: clamp(6.5rem, 15vw, 10.5rem);
   font-weight: 400;
+  font-kerning: none;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "kern" 0, "tnum" 1;
   line-height: 1;
-  letter-spacing: -0.08em;
+  letter-spacing: 0;
   filter: drop-shadow(0 16px 34px rgba(63, 77, 178, 0.16));
+}
+
+.mirage-404__digit {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  -webkit-text-fill-color: transparent;
+}
+
+.mirage-404__digit--four {
+  width: 0.58em;
+}
+
+.mirage-404__digit--zero {
+  width: 0.52em;
+  margin-inline: -0.02em;
 }
 
 .mirage-404__ring,
