@@ -152,6 +152,17 @@ button.cusdis-disabled {
   color: var(--cusdis-muted) !important;
 }
 
+#root button[type="button"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem !important;
+  color: #071326 !important;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.25rem;
+}
+
 .my-4 {
   margin-top: 0.9rem !important;
   margin-bottom: 0.9rem !important;
