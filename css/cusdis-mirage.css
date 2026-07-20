@@ -163,6 +163,29 @@ button.cusdis-disabled {
   line-height: 1.25rem;
 }
 
+#root > div > .mt-4.px-1 {
+  position: relative;
+  margin-top: 0.8rem !important;
+  padding-top: 1.05rem;
+  border-top: 1px solid var(--cusdis-border);
+}
+
+#root > div > .mt-4.px-1 > .my-4 {
+  position: relative;
+  overflow: hidden;
+  margin: 0.85rem 0 !important;
+  padding: 1rem 1.05rem 1rem 1.25rem;
+  border: 1px solid color-mix(in srgb, var(--cusdis-cyan) 34%, var(--cusdis-border));
+  border-radius: 15px;
+  background:
+    linear-gradient(135deg,
+      color-mix(in srgb, var(--cusdis-bg) 88%, transparent),
+      color-mix(in srgb, var(--cusdis-violet) 7%, transparent));
+  box-shadow:
+    0 10px 26px color-mix(in srgb, var(--cusdis-ring) 54%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
 .my-4 {
   margin-top: 0.9rem !important;
   margin-bottom: 0.9rem !important;
