@@ -1,0 +1,209 @@
+:root {
+  color-scheme: light;
+  --cusdis-bg: rgba(232, 240, 255, 0.72);
+  --cusdis-field: rgba(255, 255, 255, 0.82);
+  --cusdis-field-focus: rgba(255, 255, 255, 0.98);
+  --cusdis-text: #17213f;
+  --cusdis-muted: #65708f;
+  --cusdis-border: rgba(73, 112, 170, 0.28);
+  --cusdis-cyan: #2989b8;
+  --cusdis-violet: #7357e8;
+  --cusdis-ring: rgba(41, 137, 184, 0.18);
+  --cusdis-shadow: 0 12px 30px rgba(49, 66, 120, 0.12);
+}
+
+html,
+body {
+  min-height: 0 !important;
+  overflow: hidden !important;
+  background: transparent !important;
+}
+
+html {
+  color-scheme: light !important;
+}
+
+body {
+  color: var(--cusdis-text);
+  font-family: "Avenir Next", "Inter", "PingFang SC", "Microsoft YaHei UI", sans-serif;
+}
+
+#root,
+#root > div {
+  padding: 0.15rem 0.1rem 0.05rem;
+  color: var(--cusdis-text);
+  background: transparent !important;
+}
+
+#root > div.dark {
+  --cusdis-bg: rgba(14, 27, 54, 0.76);
+  --cusdis-field: rgba(18, 36, 68, 0.82);
+  --cusdis-field-focus: rgba(22, 44, 82, 0.96);
+  --cusdis-text: #f4f6ff;
+  --cusdis-muted: #a8b4d0;
+  --cusdis-border: rgba(143, 181, 230, 0.28);
+  --cusdis-cyan: #75e8ff;
+  --cusdis-violet: #aa8cff;
+  --cusdis-ring: rgba(117, 232, 255, 0.18);
+  --cusdis-shadow: 0 14px 36px rgba(0, 0, 0, 0.24);
+  color: var(--cusdis-text);
+  background: transparent !important;
+}
+
+label {
+  margin-bottom: 0.42rem !important;
+  color: var(--cusdis-text) !important;
+  font-size: 0.88rem;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+}
+
+.grid-cols-1,
+.grid-cols-2 {
+  gap: 0.78rem !important;
+}
+
+input,
+textarea {
+  width: 100%;
+  border: 1px solid var(--cusdis-border) !important;
+  border-radius: 12px !important;
+  outline: 0 !important;
+  color: var(--cusdis-text) !important;
+  background: var(--cusdis-field) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 7px 20px rgba(40, 57, 110, 0.05);
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+input {
+  min-height: 2.75rem;
+  padding: 0.68rem 0.82rem !important;
+}
+
+textarea {
+  min-height: 7.2rem;
+  padding: 0.76rem 0.82rem !important;
+  line-height: 1.65;
+  resize: vertical;
+}
+
+input:hover,
+textarea:hover {
+  border-color: color-mix(in srgb, var(--cusdis-cyan) 55%, var(--cusdis-border)) !important;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--cusdis-cyan) !important;
+  background: var(--cusdis-field-focus) !important;
+  box-shadow: 0 0 0 3px var(--cusdis-ring), var(--cusdis-shadow);
+  transform: translateY(-1px);
+}
+
+button {
+  border: 1px solid color-mix(in srgb, var(--cusdis-cyan) 62%, transparent) !important;
+  border-radius: 999px !important;
+  color: #071326 !important;
+  background: linear-gradient(110deg, #75e8ff, #aa8cff) !important;
+  box-shadow: 0 9px 22px rgba(66, 118, 190, 0.2);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    filter 180ms ease;
+}
+
+button:hover {
+  filter: brightness(1.04) saturate(1.08);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 26px rgba(80, 112, 196, 0.28);
+}
+
+button:focus-visible {
+  outline: 3px solid var(--cusdis-ring) !important;
+  outline-offset: 2px;
+}
+
+button.cusdis-disabled {
+  cursor: wait;
+  opacity: 0.62;
+}
+
+.bg-blue-500 {
+  border: 1px solid color-mix(in srgb, var(--cusdis-cyan) 42%, transparent);
+  border-radius: 12px;
+  color: var(--cusdis-text) !important;
+  background:
+    linear-gradient(110deg, color-mix(in srgb, var(--cusdis-cyan) 20%, transparent),
+      color-mix(in srgb, var(--cusdis-violet) 18%, transparent)) !important;
+  box-shadow: var(--cusdis-shadow);
+}
+
+.text-gray-500,
+.text-gray-900,
+.dark .dark\:text-gray-100,
+.dark .dark\:text-gray-200,
+.dark .dark\:text-gray-400 {
+  color: var(--cusdis-muted) !important;
+}
+
+.my-4 {
+  margin-top: 0.9rem !important;
+  margin-bottom: 0.9rem !important;
+}
+
+.my-8 {
+  margin-top: 0.58rem !important;
+  margin-bottom: 0.58rem !important;
+}
+
+.mt-4 {
+  margin-top: 0.55rem !important;
+}
+
+.border-gray-200,
+.dark .dark\:border-gray-100,
+.border-color-gray-200 {
+  border-color: var(--cusdis-border) !important;
+}
+
+a[href="https://cusdis.com"] {
+  color: var(--cusdis-muted);
+  text-decoration: none;
+  opacity: 0.58;
+}
+
+a[href="https://cusdis.com"]:hover {
+  color: var(--cusdis-cyan);
+  opacity: 0.9;
+}
+
+blockquote {
+  border-left: 3px solid var(--cusdis-violet);
+  border-radius: 0 10px 10px 0;
+  color: var(--cusdis-text);
+  background: var(--cusdis-bg) !important;
+}
+
+@media (max-width: 640px) {
+  .grid-cols-2 {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  label {
+    font-size: 0.86rem;
+  }
+
+  input {
+    min-height: 2.7rem;
+  }
+
+  textarea {
+    min-height: 7.8rem;
+  }
+}

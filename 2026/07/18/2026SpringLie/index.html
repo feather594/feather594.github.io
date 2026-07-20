@@ -274,6 +274,7 @@
               <span id="subtitle">2026年春季学期 李代数及其表示理论作业</span>
             
           </div>
+          
         
 
         
@@ -454,29 +455,168 @@
   
     <article id="comments" lazyload>
       
+  <div class="cusdis">
+    <div id="cusdis_thread"
+      data-host="https://cusdis.com"
+      data-app-id="c80e6b59-a81d-405b-9348-b12077de4824"
+      data-page-id="0de4f53814dd8a3082568f0e16582138"
+      data-page-url="2026/07/18/2026SpringLie/"
+      data-page-title="2026年春季学期 李代数及其表示理论作业"
+      data-theme="dark"
+      data-mirage-style="/css/cusdis-mirage.css"
+    >
+    </div>
+  </div>
   <script type="text/javascript">
-    Fluid.utils.loadComments('#comments', function() {
-      var light = 'github-light';
-      var dark = 'github-dark';
-      var schema = document.documentElement.getAttribute('data-user-color-scheme');
-      if (schema === 'dark') {
-        schema = dark;
-      } else {
-        schema = light;
+    Fluid.utils.loadComments('#cusdis_thread', function() {
+      var thread = document.querySelector('#cusdis_thread');
+      var schema = document.documentElement.getAttribute('data-user-color-scheme')
+        || document.documentElement.getAttribute('data-default-color-scheme')
+        || 'dark';
+      thread.dataset.theme = schema === 'dark' ? 'dark' : 'light';
+
+      var cusdisFrame = null;
+      var frameResizeObserver = null;
+      var frameMutationObserver = null;
+      var pendingResize = 0;
+
+      function measureCusdisFrame(suggestedHeight) {
+        if (!cusdisFrame) return;
+
+        window.cancelAnimationFrame(pendingResize);
+        pendingResize = window.requestAnimationFrame(function() {
+          var measuredHeight = Number(suggestedHeight) || 0;
+          var hasLocalMeasurement = false;
+
+          try {
+            var frameDocument = cusdisFrame.contentDocument;
+            if (frameDocument && frameDocument.documentElement) {
+              var root = frameDocument.getElementById('root');
+              if (root) {
+                var rootBounds = root.getBoundingClientRect();
+                measuredHeight = Math.max(
+                  root.scrollHeight,
+                  root.offsetHeight,
+                  rootBounds.height
+                );
+                hasLocalMeasurement = measuredHeight > 0;
+              }
+            }
+          } catch (error) {
+            // The official resize message remains available as a fallback.
+          }
+
+          if (measuredHeight > 0) {
+            cusdisFrame.style.height = Math.ceil(measuredHeight + (hasLocalMeasurement ? 2 : 4)) + 'px';
+            thread.classList.add('cusdis-ready');
+          }
+        });
       }
-      window.UtterancesThemeLight = light;
-      window.UtterancesThemeDark = dark;
-      var s = document.createElement('script');
-      s.setAttribute('src', 'https://utteranc.es/client.js');
-      s.setAttribute('repo', 'feather594/feather594.github.io');
-      s.setAttribute('issue-term', 'pathname');
-      
-      s.setAttribute('label', 'utterances');
-      
-      s.setAttribute('theme', schema);
-      s.setAttribute('crossorigin', 'anonymous');
-      document.getElementById('comments').appendChild(s);
-    })
+
+      function styleCusdisFrame() {
+        if (!cusdisFrame) return;
+
+        cusdisFrame.setAttribute('scrolling', 'no');
+        cusdisFrame.style.width = '100%';
+        cusdisFrame.style.border = '0';
+        cusdisFrame.style.overflow = 'hidden';
+        cusdisFrame.style.background = 'transparent';
+
+        try {
+          var frameDocument = cusdisFrame.contentDocument;
+          if (!frameDocument || !frameDocument.head) return;
+
+          if (!frameDocument.getElementById('mirage-cusdis-style')) {
+            var stylesheet = frameDocument.createElement('link');
+            stylesheet.id = 'mirage-cusdis-style';
+            stylesheet.rel = 'stylesheet';
+            stylesheet.href = thread.dataset.mirageStyle;
+            stylesheet.addEventListener('load', function() {
+              measureCusdisFrame();
+            });
+            frameDocument.head.appendChild(stylesheet);
+          }
+
+          if (frameResizeObserver) frameResizeObserver.disconnect();
+          if (frameMutationObserver) frameMutationObserver.disconnect();
+
+          var root = frameDocument.getElementById('root');
+          if (root && 'ResizeObserver' in window) {
+            frameResizeObserver = new ResizeObserver(function() {
+              measureCusdisFrame();
+            });
+            frameResizeObserver.observe(root);
+          }
+
+          if (root) {
+            frameMutationObserver = new MutationObserver(function() {
+              measureCusdisFrame();
+            });
+            frameMutationObserver.observe(root, {
+              childList: true,
+              subtree: true,
+              attributes: true
+            });
+          }
+        } catch (error) {
+          // Keep the official Cusdis resize listener as the safe fallback.
+        }
+
+        measureCusdisFrame();
+      }
+
+      function findCusdisFrame() {
+        var nextFrame = thread.querySelector('iframe');
+        if (!nextFrame || nextFrame === cusdisFrame) return;
+
+        cusdisFrame = nextFrame;
+        cusdisFrame.addEventListener('load', styleCusdisFrame);
+        styleCusdisFrame();
+      }
+
+      var threadObserver = new MutationObserver(findCusdisFrame);
+      threadObserver.observe(thread, { childList: true, subtree: true });
+
+      window.addEventListener('message', function(event) {
+        if (!cusdisFrame || event.source !== cusdisFrame.contentWindow) return;
+
+        try {
+          var message = typeof event.data === 'string'
+            ? JSON.parse(event.data)
+            : event.data;
+          if (message && message.from === 'cusdis' && message.event === 'resize') {
+            measureCusdisFrame(message.data);
+          }
+        } catch (error) {
+          // Ignore unrelated messages from other embedded content.
+        }
+      });
+
+      var themeObserver = new MutationObserver(function() {
+        var nextSchema = document.documentElement.getAttribute('data-user-color-scheme')
+          || document.documentElement.getAttribute('data-default-color-scheme')
+          || 'dark';
+        if (window.CUSDIS && window.CUSDIS.setTheme) {
+          window.CUSDIS.setTheme(nextSchema === 'dark' ? 'dark' : 'light');
+        }
+      });
+      themeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-user-color-scheme']
+      });
+
+      Fluid.utils.createScript('https://cusdis.com/js/widget/lang/zh-cn.js', function() {
+        window.CUSDIS_LOCALE = window.CUSDIS_LOCALE || {};
+        window.CUSDIS_LOCALE.reply_placeholder = '评论内容';
+
+        Fluid.utils.createScript('https://cusdis.com/js/cusdis.es.js', function() {
+          findCusdisFrame();
+          if (window.CUSDIS && window.CUSDIS.setTheme) {
+            window.CUSDIS.setTheme(schema === 'dark' ? 'dark' : 'light');
+          }
+        });
+      });
+    });
   </script>
   <noscript>Please enable JavaScript to view the comments</noscript>
 
