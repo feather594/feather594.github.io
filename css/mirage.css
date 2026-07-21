@@ -964,8 +964,13 @@ html[data-default-color-scheme="dark"]:not([data-user-color-scheme]) .index-card
   margin: 1.6rem 0 0;
   border: 1px solid var(--mirage-border);
   border-radius: 22px;
-  background: rgba(3, 6, 20, 0.48);
+  background: #dce6f3;
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.2);
+}
+
+html[data-user-color-scheme="dark"] .pdf-shell,
+html[data-default-color-scheme="dark"]:not([data-user-color-scheme]) .pdf-shell {
+  background: rgba(10, 17, 39, 0.92);
 }
 
 .pdf-shell iframe,
@@ -978,11 +983,18 @@ html[data-default-color-scheme="dark"]:not([data-user-color-scheme]) .index-card
   background: #fff;
 }
 
-.pdf-fallback {
+.markdown-body .pdf-fallback {
   margin: 0;
   padding: 1rem 1.25rem;
-  color: var(--mirage-muted);
+  color: #435372;
   text-align: center;
+  background: #dce6f3;
+}
+
+html[data-user-color-scheme="dark"] .markdown-body .pdf-fallback,
+html[data-default-color-scheme="dark"]:not([data-user-color-scheme]) .markdown-body .pdf-fallback {
+  color: var(--mirage-muted);
+  background: rgba(10, 17, 39, 0.92);
 }
 
 .about-avatar img {
@@ -1376,6 +1388,28 @@ footer a {
   to { transform: translate(-50%, -50%) rotate(442deg); }
 }
 
+/* Keep the aurora artwork on a wide canvas instead of stretching it to
+   tablet and phone banner proportions. The banner crops this canvas. */
+@media (max-width: 1180px) {
+  body:not(.is-home) #banner::before,
+  body:not(.is-home) #banner::after {
+    inset: auto;
+    top: 50%;
+    left: 50%;
+    width: max(130vw, 180vh);
+    height: max(90vh, 50vw);
+    translate: -50% -50%;
+  }
+
+  body:not(.is-home) #banner::before {
+    transform-origin: 50% 50%;
+  }
+
+  body:not(.is-home) #banner::after {
+    background-size: 100% 100%, 103% 106%, 100% 100%, 106% 102%, 170% 170%;
+  }
+}
+
 @media (max-width: 991px) {
   .navbar {
     width: calc(100% - 28px);
@@ -1420,87 +1454,6 @@ footer a {
 @media (max-width: 767px) {
   body::before {
     background-size: 48px 48px;
-  }
-
-  body:not(.is-home) #banner::before {
-    inset: -10% -18%;
-    background:
-      radial-gradient(
-        ellipse 72vmax 44vmax at -42% 96%,
-        transparent 0 35%,
-        rgba(42, 221, 235, 0.43) 43%,
-        rgba(28, 134, 205, 0.2) 50%,
-        transparent 59%
-      ),
-      radial-gradient(
-        ellipse 55vmax 32vmax at -25% 18%,
-        transparent 0 38%,
-        rgba(31, 174, 218, 0.3) 46%,
-        rgba(36, 90, 181, 0.11) 54%,
-        transparent 64%
-      ),
-      radial-gradient(
-        ellipse 48vmax 29vmax at 47% -18%,
-        transparent 0 38%,
-        rgba(64, 120, 218, 0.21) 46%,
-        transparent 59%
-      ),
-      radial-gradient(
-        ellipse 74vmax 45vmax at 140% -10%,
-        transparent 0 34%,
-        rgba(158, 79, 232, 0.4) 43%,
-        rgba(76, 91, 211, 0.18) 51%,
-        transparent 61%
-      ),
-      radial-gradient(
-        ellipse 58vmax 35vmax at 126% 96%,
-        transparent 0 37%,
-        rgba(122, 70, 218, 0.27) 46%,
-        transparent 61%
-      ),
-      radial-gradient(ellipse 30vmax 24vmax at 2% 47%, rgba(23, 196, 224, 0.2), transparent 72%),
-      radial-gradient(ellipse 31vmax 25vmax at 98% 58%, rgba(141, 68, 221, 0.22), transparent 73%);
-    filter: blur(9px) saturate(145%);
-    transform-origin: 50% 55%;
-  }
-
-  body:not(.is-home) #banner::after {
-    inset: -12% -20%;
-    background-image:
-      repeating-radial-gradient(
-        ellipse 76vmax 48vmax at -50% 110%,
-        transparent 0 14px,
-        rgba(87, 216, 232, 0.105) 16px,
-        transparent 19px 33px
-      ),
-      repeating-radial-gradient(
-        ellipse 58vmax 37vmax at -22% 10%,
-        transparent 0 19px,
-        rgba(49, 145, 211, 0.085) 21px,
-        transparent 24px 41px
-      ),
-      repeating-radial-gradient(
-        ellipse 78vmax 49vmax at 150% -12%,
-        transparent 0 16px,
-        rgba(169, 103, 231, 0.095) 18px,
-        transparent 21px 37px
-      ),
-      repeating-radial-gradient(
-        ellipse 60vmax 38vmax at 125% 106%,
-        transparent 0 22px,
-        rgba(119, 88, 218, 0.075) 24px,
-        transparent 27px 46px
-      ),
-      repeating-linear-gradient(
-        118deg,
-        transparent 0 20px,
-        rgba(62, 151, 210, 0.03) 21px,
-        transparent 23px 43px
-      );
-    background-position: 0 0, 0 2%, 100% 0, 100% 100%, 0 0;
-    background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 190% 150%;
-    mask-image: linear-gradient(96deg, #000 0%, rgba(0, 0, 0, 0.76) 31%, transparent 49%, rgba(0, 0, 0, 0.64) 69%, #000 100%);
-    -webkit-mask-image: linear-gradient(96deg, #000 0%, rgba(0, 0, 0, 0.76) 31%, transparent 49%, rgba(0, 0, 0, 0.64) 69%, #000 100%);
   }
 
   .navbar {
