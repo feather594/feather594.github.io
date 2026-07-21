@@ -1569,6 +1569,15 @@ footer a {
   }
 }
 
+@media (max-width: 1024px) and (orientation: portrait) {
+  .pdf-shell iframe,
+  .pdf-shell object {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 210 / 297;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
