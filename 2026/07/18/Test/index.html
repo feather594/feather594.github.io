@@ -7,6 +7,25 @@
 
 <head>
   <meta charset="UTF-8">
+  <script>
+    (function() {
+      var root = document.documentElement;
+      var path = window.location.pathname.replace(/\/+$/, '') || '/';
+      var unsupported = path === '/24FallLAB1' || path === '/26FallLAB2';
+      var preference = 'zh-CN';
+
+      try {
+        preference = window.localStorage.getItem('mirage-language') === 'en' ? 'en' : 'zh-CN';
+      } catch (error) {
+        preference = 'zh-CN';
+      }
+
+      var language = unsupported ? 'zh-CN' : preference;
+      root.setAttribute('data-mirage-language', language);
+      root.setAttribute('data-mirage-language-preference', preference);
+      root.setAttribute('lang', language);
+    })();
+  </script>
 
   <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.jpg">
   <link rel="icon" href="/img/fluid.jpg">
@@ -28,7 +47,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://feather594.github.io/img/og.png">
 <meta property="article:published_time" content="2026-07-18T05:26:40.000Z">
-<meta property="article:modified_time" content="2026-07-21T10:26:21.151Z">
+<meta property="article:modified_time" content="2026-07-23T10:11:28.814Z">
 <meta property="article:author" content="Mirage">
 <meta property="article:tag" content="其他杂项">
 <meta name="twitter:card" content="summary_large_image">
@@ -264,6 +283,11 @@
             </a>
           </li>
         
+        <li class="nav-item" id="language-toggle-btn">
+          <a class="nav-link" target="_self" href="javascript:;" aria-label="Switch to English">
+            <span class="mirage-language-label" aria-hidden="true">EN</span>
+          </a>
+        </li>
       </ul>
     </div>
   </div>
@@ -301,31 +325,35 @@
 
   <div class="mt-1">
     
-      <span class="post-meta mr-2">
+      <span class="post-meta mr-2 mirage-post-wordcount">
         <i class="iconfont icon-chart"></i>
-        
-          151 字
-        
+        <span class="mirage-post-wordcount__value">
+          
+            151 字
+          
+        </span>
       </span>
     
 
     
-      <span class="post-meta mr-2">
+      <span class="post-meta mr-2 mirage-post-reading-time">
         <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          2 分钟
-        
+        <span class="mirage-post-reading-time__value">
+          
+          
+          
+            2 分钟
+          
+        </span>
       </span>
     
 
     
     
       
-        <span id="busuanzi_container_page_pv" style="display: none">
+        <span class="post-meta">
           <i class="iconfont icon-eye" aria-hidden="true"></i>
-          阅读 <span id="busuanzi_value_page_pv"></span> 次
+          阅读 <span id="busuanzi_page_pv">--</span> 次
         </span>
         
 
@@ -395,7 +423,7 @@ F = -k_{\mathrm B}T\ln Z.
 <div class="pdf-shell">
   <iframe
     src="/files/Thermotics-HW.pdf#view=FitH&toolbar=1&navpanes=0"
-    title="Thermotics-HW PDF 预览"
+    title="Thermotics-HW PDF预览"
   ></iframe>
   <p class="pdf-fallback">如果浏览器不支持内嵌预览，可以<a href="/files/Thermotics-HW.pdf" target="_blank" rel="noopener">在新标签页中打开PDF文件</a>。</p>
 </div>
@@ -506,12 +534,113 @@ F = -k_{\mathrm B}T\ln Z.
       var schema = document.documentElement.getAttribute('data-user-color-scheme')
         || document.documentElement.getAttribute('data-default-color-scheme')
         || 'dark';
+      var pageLanguage = document.documentElement.getAttribute('data-mirage-language') === 'en'
+        ? 'en'
+        : 'zh-cn';
       thread.dataset.theme = schema === 'dark' ? 'dark' : 'light';
 
       var cusdisFrame = null;
       var frameResizeObserver = null;
       var frameMutationObserver = null;
       var pendingResize = 0;
+      var validationMessages = [
+        '内容不能为空',
+        '昵称不能为空',
+        'Content is required',
+        'Nickname is required'
+      ];
+
+      function closeCommentAlert(modal) {
+        if (!modal) return;
+        modal.classList.remove('is-visible');
+        window.setTimeout(function() {
+          modal.remove();
+          if (cusdisFrame && cusdisFrame.contentWindow) {
+            cusdisFrame.contentWindow.focus();
+          }
+        }, 220);
+      }
+
+      function showCommentAlert(message) {
+        var existing = document.getElementById('mirage-comment-alert');
+        if (existing) existing.remove();
+
+        var modal = document.createElement('div');
+        modal.id = 'mirage-comment-alert';
+        modal.className = 'mirage-comment-alert';
+        modal.setAttribute('role', 'alertdialog');
+        modal.setAttribute('aria-modal', 'true');
+        modal.setAttribute('aria-labelledby', 'mirage-comment-alert-message');
+
+        var panel = document.createElement('div');
+        panel.className = 'mirage-comment-alert__panel';
+
+        var mark = document.createElement('span');
+        mark.className = 'mirage-comment-alert__mark';
+        mark.setAttribute('aria-hidden', 'true');
+        mark.textContent = '!';
+
+        var text = document.createElement('p');
+        text.id = 'mirage-comment-alert-message';
+        text.className = 'mirage-comment-alert__message';
+        text.textContent = message;
+
+        var confirm = document.createElement('button');
+        confirm.className = 'mirage-comment-alert__confirm';
+        confirm.type = 'button';
+        confirm.textContent = pageLanguage === 'en' ? 'OK' : '确定';
+
+        panel.appendChild(mark);
+        panel.appendChild(text);
+        panel.appendChild(confirm);
+        modal.appendChild(panel);
+        document.body.appendChild(modal);
+
+        function dismiss() {
+          document.removeEventListener('keydown', handleKeydown);
+          closeCommentAlert(modal);
+        }
+
+        function handleKeydown(event) {
+          if (event.key === 'Escape' || event.key === 'Enter') {
+            event.preventDefault();
+            dismiss();
+          }
+        }
+
+        confirm.addEventListener('click', dismiss);
+        modal.addEventListener('click', function(event) {
+          if (event.target === modal) dismiss();
+        });
+        document.addEventListener('keydown', handleKeydown);
+
+        window.requestAnimationFrame(function() {
+          modal.classList.add('is-visible');
+          confirm.focus();
+        });
+      }
+
+      function installCommentAlertBridge() {
+        if (!cusdisFrame || !cusdisFrame.contentWindow) return;
+
+        try {
+          var frameWindow = cusdisFrame.contentWindow;
+          if (frameWindow.__mirageAlertBridgeInstalled) return;
+
+          var nativeAlert = frameWindow.alert.bind(frameWindow);
+          frameWindow.alert = function(message) {
+            var normalizedMessage = String(message);
+            if (validationMessages.indexOf(normalizedMessage) !== -1) {
+              showCommentAlert(normalizedMessage);
+              return;
+            }
+            nativeAlert(normalizedMessage);
+          };
+          frameWindow.__mirageAlertBridgeInstalled = true;
+        } catch (error) {
+          // Fall back to the browser alert if the iframe becomes cross-origin.
+        }
+      }
 
       function measureCusdisFrame(suggestedHeight) {
         if (!cusdisFrame) return;
@@ -554,6 +683,7 @@ F = -k_{\mathrm B}T\ln Z.
         cusdisFrame.style.border = '0';
         cusdisFrame.style.overflow = 'hidden';
         cusdisFrame.style.background = 'transparent';
+        installCommentAlertBridge();
 
         try {
           var frameDocument = cusdisFrame.contentDocument;
@@ -638,10 +768,12 @@ F = -k_{\mathrm B}T\ln Z.
         attributeFilter: ['data-user-color-scheme']
       });
 
-      Fluid.utils.createScript('https://cusdis.com/js/widget/lang/zh-cn.js', function() {
+      Fluid.utils.createScript('https://cusdis.com/js/widget/lang/' + pageLanguage + '.js', function() {
         window.CUSDIS_LOCALE = window.CUSDIS_LOCALE || {};
-        window.CUSDIS_LOCALE.email = '邮件地址（可选）';
-        window.CUSDIS_LOCALE.reply_placeholder = '内容（评论经管理员审核通过后方可展示）';
+        window.CUSDIS_LOCALE.email = pageLanguage === 'en' ? 'Email (optional)' : '邮件地址（可选）';
+        window.CUSDIS_LOCALE.reply_placeholder = pageLanguage === 'en'
+          ? 'Content (comments will be displayed after administrator approval)'
+          : '内容（评论经管理员审核通过后方可展示）';
 
         Fluid.utils.createScript('https://cusdis.com/js/cusdis.es.js', function() {
           findCusdisFrame();
@@ -766,16 +898,16 @@ F = -k_{\mathrm B}T\ln Z.
 
   
     
-      <span id="busuanzi_container_site_pv" style="display: none">
+      <span>
         总访问量 
-        <span id="busuanzi_value_site_pv"></span>
+        <span id="busuanzi_site_pv">--</span>
          次
       </span>
     
     
-      <span id="busuanzi_container_site_uv" style="display: none">
+      <span>
         总访客数 
-        <span id="busuanzi_value_site_uv"></span>
+        <span id="busuanzi_site_uv">--</span>
          人
       </span>
     
@@ -809,6 +941,10 @@ F = -k_{\mathrm B}T\ln Z.
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
+
+
+<script src="/js/mirage-i18n.js"></script>
+
 
 
 
@@ -916,7 +1052,7 @@ F = -k_{\mathrm B}T\ln Z.
 
   <script  src="/js/local-search.js" ></script>
 
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+  <script defer src="https://cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" ></script>
 
 
 

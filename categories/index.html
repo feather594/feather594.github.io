@@ -7,6 +7,25 @@
 
 <head>
   <meta charset="UTF-8">
+  <script>
+    (function() {
+      var root = document.documentElement;
+      var path = window.location.pathname.replace(/\/+$/, '') || '/';
+      var unsupported = path === '/24FallLAB1' || path === '/26FallLAB2';
+      var preference = 'zh-CN';
+
+      try {
+        preference = window.localStorage.getItem('mirage-language') === 'en' ? 'en' : 'zh-CN';
+      } catch (error) {
+        preference = 'zh-CN';
+      }
+
+      var language = unsupported ? 'zh-CN' : preference;
+      root.setAttribute('data-mirage-language', language);
+      root.setAttribute('data-mirage-language-preference', preference);
+      root.setAttribute('lang', language);
+    })();
+  </script>
 
   <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.jpg">
   <link rel="icon" href="/img/fluid.jpg">
@@ -253,6 +272,11 @@
             </a>
           </li>
         
+        <li class="nav-item" id="language-toggle-btn">
+          <a class="nav-link" target="_self" href="javascript:;" aria-label="Switch to English">
+            <span class="mirage-language-label" aria-hidden="true">EN</span>
+          </a>
+        </li>
       </ul>
     </div>
   </div>
@@ -361,16 +385,16 @@
 
   
     
-      <span id="busuanzi_container_site_pv" style="display: none">
+      <span>
         总访问量 
-        <span id="busuanzi_value_site_pv"></span>
+        <span id="busuanzi_site_pv">--</span>
          次
       </span>
     
     
-      <span id="busuanzi_container_site_uv" style="display: none">
+      <span>
         总访客数 
-        <span id="busuanzi_value_site_uv"></span>
+        <span id="busuanzi_site_uv">--</span>
          人
       </span>
     
@@ -406,6 +430,10 @@
 <script  src="/js/plugins.js" ></script>
 
 
+<script src="/js/mirage-i18n.js"></script>
+
+
+
 
 
 
@@ -418,7 +446,7 @@
 
   <script  src="/js/local-search.js" ></script>
 
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+  <script defer src="https://cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" ></script>
 
 
 
