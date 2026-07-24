@@ -1165,6 +1165,7 @@ html[data-default-color-scheme="dark"]:not([data-user-color-scheme]) .markdown-b
 }
 
 .mirage-comment-alert__mark {
+  position: relative;
   display: inline-grid;
   width: 2.4rem;
   height: 2.4rem;
@@ -1172,11 +1173,36 @@ html[data-default-color-scheme="dark"]:not([data-user-color-scheme]) .markdown-b
   border: 1px solid rgba(117, 232, 255, 0.52);
   border-radius: 50%;
   color: #f4f6ff;
-  font-size: 1.2rem;
+  font-size: 0;
   font-weight: 750;
   line-height: 1;
+  user-select: none;
   background: linear-gradient(135deg, rgba(117, 232, 255, 0.28), rgba(170, 140, 255, 0.36));
   box-shadow: 0 8px 24px rgba(117, 232, 255, 0.14);
+}
+
+.mirage-comment-alert__mark::before,
+.mirage-comment-alert__mark::after {
+  position: absolute;
+  left: 50%;
+  display: block;
+  content: "";
+  background: currentColor;
+  transform: translateX(-50%);
+}
+
+.mirage-comment-alert__mark::before {
+  top: 9px;
+  width: 5px;
+  height: 12px;
+  clip-path: polygon(0 0, 100% 0, 76% 100%, 24% 100%);
+}
+
+.mirage-comment-alert__mark::after {
+  top: 24px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
 }
 
 .mirage-comment-alert__message {
