@@ -1,0 +1,107 @@
+/* Mirage skin for the pinned Waline client. All selectors stay inside this widget. */
+#mirage-waline {
+  --waline-font-size: 1rem;
+  --waline-theme-color: #2989b8;
+  --waline-active-color: #7357e8;
+  --waline-text-color: #17213f;
+  --waline-info-color: #65708f;
+  --waline-bg-color: transparent;
+  --waline-bg-color-light: rgba(232,240,255,.72);
+  --waline-border-color: rgba(73,112,170,.28);
+  --waline-disable-bg-color: transparent;
+  --mirage-comment-field: rgba(255,255,255,.82);
+  --mirage-comment-focus: rgba(255,255,255,.98);
+  --mirage-comment-ring: rgba(41,137,184,.18);
+  min-height: 20rem;
+  color: var(--waline-text-color);
+  font-family: "Avenir Next", "Inter", "PingFang SC", "Microsoft YaHei UI", sans-serif;
+}
+html[data-user-color-scheme="dark"] #mirage-waline {
+  --waline-theme-color: #75e8ff;
+  --waline-active-color: #aa8cff;
+  --waline-text-color: #f4f6ff;
+  --waline-info-color: #a8b4d0;
+  --waline-bg-color-light: rgba(14,27,54,.76);
+  --waline-border-color: rgba(143,181,230,.28);
+  --mirage-comment-field: rgba(18,36,68,.82);
+  --mirage-comment-focus: rgba(22,44,82,.96);
+  --mirage-comment-ring: rgba(117,232,255,.18);
+}
+#mirage-waline [hidden] { display: none !important; }
+#mirage-waline.is-loaded { min-height: 0; }
+#mirage-waline .mirage-waline-status { color: var(--waline-info-color); }
+#mirage-waline .wl-comment { margin: 0 0 .8rem; }
+#mirage-waline .wl-panel { margin: 0; padding: .15rem .1rem .05rem; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+#mirage-waline .wl-header { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .78rem; overflow: visible; padding: 0; border: 0; margin-bottom: .8rem; }
+#mirage-waline .wl-header-item { display: flex; flex-direction: column; align-items: stretch; width: auto; padding: 0; }
+#mirage-waline label { display: block; margin: 0 0 .42rem; padding: 0; color: var(--waline-info-color); font-size: .88rem; font-weight: 650; line-height: 1.5; letter-spacing: .02em; text-align: left; }
+#mirage-waline .wl-input, #mirage-waline .wl-editor {
+  box-sizing: border-box; width: 100%; margin: 0;
+  border: 1px solid var(--waline-border-color); border-radius: 12px; outline: 0;
+  color: var(--waline-text-color); background: var(--mirage-comment-field);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 7px 20px rgba(40,57,110,.05);
+  transition: border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+}
+#mirage-waline .wl-input { height: auto; min-height: 2.75rem; padding: .68rem .82rem; font-size: 1rem; }
+#mirage-waline .wl-editor { min-height: 7.2rem; padding: .76rem .82rem; font-size: 1rem; line-height: 1.65; resize: vertical; }
+#mirage-waline .wl-input:focus, #mirage-waline .wl-editor:focus { border-color: var(--waline-theme-color); background: var(--mirage-comment-focus); box-shadow: 0 0 0 3px var(--mirage-comment-ring); }
+#mirage-waline .wl-footer { display: flex; margin: 1rem 0 .55rem; padding: 0; border: 0; }
+#mirage-waline .wl-footer .wl-info { display: flex; flex: 1; justify-content: flex-start; width: 100%; margin: 0; }
+#mirage-waline .wl-footer .wl-actions,
+#mirage-waline .wl-footer .wl-text-number,
+#mirage-waline .wl-like { display: none; }
+#mirage-waline .wl-btn.primary, #mirage-waline .wl-reply, #mirage-waline .mirage-waline-retry {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: .5rem 1rem; border: 1px solid color-mix(in srgb,var(--waline-theme-color) 62%,transparent);
+  border-radius: 999px; color: #071326; background: linear-gradient(110deg,#75e8ff,#aa8cff);
+  font-size: .875rem; font-weight: 700; line-height: 1.25rem;
+  box-shadow: 0 9px 22px rgba(66,118,190,.2); cursor: pointer;
+}
+#mirage-waline .wl-btn.primary:disabled { cursor: wait; opacity: .62; }
+#mirage-waline button:focus-visible { outline: 3px solid var(--mirage-comment-ring); outline-offset: 2px; }
+#mirage-waline .wl-count { margin-top: .8rem; padding-top: 1.05rem; border-top: 1px solid var(--waline-border-color); }
+#mirage-waline .wl-cards > .wl-card-item {
+  margin: .85rem 0; padding: 1rem 1.05rem 1rem 1.25rem;
+  border: 1px solid color-mix(in srgb,var(--waline-theme-color) 34%,var(--waline-border-color));
+  border-radius: 15px;
+  background: linear-gradient(135deg,color-mix(in srgb,var(--waline-bg-color-light) 88%,transparent),color-mix(in srgb,var(--waline-active-color) 7%,transparent));
+  box-shadow: 0 10px 26px color-mix(in srgb,var(--mirage-comment-ring) 54%,transparent),inset 0 1px 0 rgba(255,255,255,.1);
+}
+#mirage-waline .wl-card { flex: 1; width: 100%; padding: 0; border-bottom: 0; }
+#mirage-waline .wl-cards .wl-user { flex: 0 0 auto; margin-inline-end: .85rem; }
+#mirage-waline .wl-cards .wl-user .wl-user-avatar {
+  display: block; width: 2.65rem; height: 2.65rem; box-sizing: border-box;
+  border: 1px solid color-mix(in srgb,var(--waline-theme-color) 52%,var(--waline-border-color));
+  border-radius: 50%; padding: 2px; object-fit: cover;
+  background: var(--waline-bg-color-light);
+  box-shadow: 0 7px 18px color-mix(in srgb,var(--mirage-comment-ring) 62%,transparent);
+}
+#mirage-waline .wl-cards .wl-user .verified-icon,
+#mirage-waline .wl-cards .wl-user .administrator-icon {
+  inset-inline-start: 1.9rem; top: 1.9rem; width: .95rem; height: .95rem;
+  border: 2px solid var(--waline-bg-color); background: var(--waline-bg-color);
+}
+#mirage-waline .wl-head { display: flex; flex-wrap: wrap; align-items: center; }
+#mirage-waline .wl-nick { color: var(--waline-text-color); font-size: 1rem; font-weight: 500; }
+#mirage-waline .wl-time { flex-basis: 100%; margin: .15rem 0 .45rem; color: var(--waline-info-color); font-size: .9rem; }
+#mirage-waline .wl-comment-actions { position: static; margin-left: auto; }
+#mirage-waline .mirage-waline-admin-badge { margin-left: .42rem; color: var(--waline-theme-color); }
+#mirage-waline .wl-meta { display: flex; flex-wrap: wrap; gap: .32rem; margin: 0 0 .55rem; color: var(--waline-info-color); font-size: .78rem; }
+#mirage-waline .wl-meta > span { padding: .12rem .42rem; border: 1px solid var(--waline-border-color); border-radius: 999px; background: var(--waline-bg-color-light); }
+#mirage-waline .wl-content { margin: .3rem 0 .6rem; padding: 0; color: var(--waline-info-color); font-size: 1rem; }
+#mirage-waline .wl-content p { margin: .5rem 0; }
+#mirage-waline .wl-reply svg { display: none; }
+#mirage-waline .wl-reply::after { content: '回复'; }
+html[data-mirage-language="en"] #mirage-waline .wl-reply::after { content: 'Reply'; }
+#mirage-waline .wl-reply-wrapper { margin-top: 1rem; }
+#mirage-waline .wl-quote { border-left: 1px solid var(--waline-border-color); padding-left: 1rem; }
+#mirage-waline .wl-power { opacity: .58; }
+@media(max-width:640px) {
+  #mirage-waline .wl-header { grid-template-columns: minmax(0,1fr); }
+  #mirage-waline label { font-size: .86rem; }
+  #mirage-waline .wl-editor { min-height: 7.8rem; }
+  #mirage-waline .wl-cards .wl-user { margin-inline-end: .65rem; }
+  #mirage-waline .wl-cards .wl-user .wl-user-avatar { width: 2.3rem; height: 2.3rem; }
+  #mirage-waline .wl-cards .wl-user .verified-icon,
+  #mirage-waline .wl-cards .wl-user .administrator-icon { inset-inline-start: 1.62rem; top: 1.62rem; width: .88rem; height: .88rem; }
+}

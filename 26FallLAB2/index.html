@@ -1,0 +1,692 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <script>
+    (function() {
+      var root = document.documentElement;
+      var path = window.location.pathname.replace(/\/+$/, '') || '/';
+      var unsupported = path === '/24FallLAB1' || path === '/26FallLAB2';
+      var preference = 'zh-CN';
+
+      try {
+        preference = window.localStorage.getItem('mirage-language') === 'en' ? 'en' : 'zh-CN';
+      } catch (error) {
+        preference = 'zh-CN';
+      }
+
+      var language = unsupported ? 'zh-CN' : preference;
+      root.setAttribute('data-mirage-language', language);
+      root.setAttribute('data-mirage-language-preference', preference);
+      root.setAttribute('lang', language);
+    })();
+  </script>
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.jpg">
+  <link rel="icon" href="/img/fluid.jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#111833">
+  <meta name="author" content="Mirage">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="课程公告欢迎大家修读陈洪佳老师的线性代数(B2)课程！本网站将根据教学进度及时作出更新。09&#x2F;07 由于两个班合并以及班级人数仍在变动，第一周作业截止时间延长一周。09&#x2F;03 课程主页建立，录入课程安排与第一周信息。                          课程信息授课老师：陈洪佳 (hjchen@ustc.edu.cn)上课时间：1至18周：1(3,4,5),">
+<meta property="og:type" content="website">
+<meta property="og:title" content="2026年秋季学期 线性代数(B2)课程主页">
+<meta property="og:url" content="https://feather594.github.io/26FallLAB2/index.html">
+<meta property="og:site_name" content="Mirage">
+<meta property="og:description" content="课程公告欢迎大家修读陈洪佳老师的线性代数(B2)课程！本网站将根据教学进度及时作出更新。09&#x2F;07 由于两个班合并以及班级人数仍在变动，第一周作业截止时间延长一周。09&#x2F;03 课程主页建立，录入课程安排与第一周信息。                          课程信息授课老师：陈洪佳 (hjchen@ustc.edu.cn)上课时间：1至18周：1(3,4,5),">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://feather594.github.io/img/og.png">
+<meta property="article:published_time" content="2026-09-01T13:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-11T12:46:25.873Z">
+<meta property="article:author" content="Mirage">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://feather594.github.io/img/og.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>2026年秋季学期 线性代数(B2)课程主页 - Mirage</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/mirage.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"feather594.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#75E8FF","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body class=" is-page layout-page">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 54vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Mirage</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-book"></i>
+                <span>助教</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/24FallLAB1" target="_self">
+                    
+                    <span>24秋线性代数(B1)</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/2026/07/18/2026SpringASP/" target="_self">
+                    
+                    <span>26春实用随机过程</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/26FallLAB2" target="_self">
+                    
+                    <span>26秋线性代数(B2)</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/%E6%95%B0%E5%AD%A6%E7%9B%B8%E5%85%B3/" target="_self">
+                    
+                    <span>数学相关</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/%E7%89%A9%E7%90%86%E7%9B%B8%E5%85%B3/" target="_self">
+                    
+                    <span>物理相关</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/%E5%85%B6%E4%BB%96%E6%9D%82%E9%A1%B9/" target="_self">
+                    
+                    <span>其他杂项</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>链接</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+        <li class="nav-item" id="language-toggle-btn">
+          <a class="nav-link" target="_self" href="javascript:;" aria-label="Switch to English">
+            <span class="mirage-language-label" aria-hidden="true">EN</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.2)">
+      <div class="banner-text text-center fade-in-up">
+        
+          <div class="h2">
+            
+              <span id="subtitle">2026年秋季学期 线性代数(B2)课程主页</span>
+            
+          </div>
+          
+            
+
+  <div class="mt-2 mirage-course-page-views">
+    
+      <span class="post-meta">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        阅读 <span id="busuanzi_page_pv">--</span> 次
+      </span>
+      
+    
+  </div>
+
+
+          
+        
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<article class="page-content">
+  <div class="markdown-body">
+    <div class="note note-primary">
+            <h2 id="课程公告">课程公告</h2><p>欢迎大家修读陈洪佳老师的线性代数(B2)课程！本网站将根据教学进度及时作出更新。</p><p><strong>09/07</strong> 由于两个班合并以及班级人数仍在变动，第一周作业截止时间延长一周。<br><strong>09/03</strong> 课程主页建立，录入课程安排与第一周信息。</p>
+          </div>
+<hr style="border: 3px solid #007bff; margin: 20px 0;">
+<div class="note note-success">
+            <h2 id="课程信息">课程信息</h2><p>授课老师：陈洪佳 (<a href="mailto:hjchen@ustc.edu.cn">hjchen@ustc.edu.cn</a>)<br>上课时间：1至18周：1(3,4,5), 3(1,2)<br>上课地点：第五教学楼5401</p><p>分组：一组：学号小于等于PB25000190；二组：学号大于等于PB25000194.<br>助教：刘玉涵 (一组)，李逍扬 (二组)。</p><p>答疑/习题课时间：待定</p>
+          </div>
+<hr style="border: 3px solid #007bff; margin: 20px 0;">
+<div class="note note-warning">
+            <h2 id="课程安排">课程安排</h2><p>作业提交要求与评分规则：</p><ul><li>每周一与周三上课时间提交上周的纸质版作业，其余时间可以提交电子版作业。周日晚24点后提交的作业视为迟交。电子版作业以PDF格式发至对应助教的邮箱。</li><li>每次作业分数上限为11分，态度认真且完成情况较好即可得到10或以上的分数，迟交的作业迟交一周内分数上限扣2分，一周及以上分数上限扣4分 (节假日与考试周视具体情况而定)。</li><li>本课程作业难度较大，不会做的题目可以空着或者使用AI辅助，但是请认真阅读并思考AI提供的思路或答案，如果被发现疑似直接照抄AI生成的结果 (比如出现修改题目所用字母或出现一些意义不明的字符等AI可能会有的幻觉) 会收到助教提醒，并且本次作业成绩会被标记。</li><li>如发现有同学的作业存在抄袭、雷同的现象，则相关同学 (抄与被抄) 会收到助教警告且其本次作业成绩会受到严重影响。</li><li>老师最后也会根据作业整体完成情况统一调整最终的平时分，大家不必过于担心。</li></ul><p>以下是课程内容与安排，其中作业若无特别说明，均指李炯生等所著《线性代数(第二版)》书中习题，该书电子版见下方“课程资料”部分。点击作业内容即可查看该次作业题目的PDF版。</p>
+          </div>
+<div class="course-table-shell">
+    <table class="course-table course-table--schedule">
+        <thead>
+            <tr style="background: #2196F3; color: white;">
+                <th style="border: 1px solid #ddd; padding: 10px;">周数</th>
+                <th style="border: 1px solid #ddd; padding: 10px;">课节</th>
+                <th style="border: 1px solid #ddd; padding: 10px;">日期</th>
+                <th style="border: 1px solid #ddd; padding: 10px;">授课内容</th>
+                <th style="border: 1px solid #ddd; padding: 10px;">作业</th>
+                <th style="border: 1px solid #ddd; padding: 10px;">截止时间</th>
+                <th style="border: 1px solid #ddd; padding: 10px;">答案</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td rowspan="2">一</td><td class="course-session">1</td><td>08/31</td><td>绪论与行列式回顾</td><td>无作业</td><td rowspan="2">09/20晚</td><td rowspan="2"><a href="/files/LAB2/week1.pdf" target="_blank">week1</a></td></tr>
+            <tr><td class="course-session">2</td><td>09/02</td><td>行列式计算相关例题</td><td><a href="/files/LAB2/HW1.pdf" target="_blank">P66 5,6,8,9; P83 1(4),(19); P86 2,5</a></td></tr>
+            <tr><td rowspan="2">二</td><td class="course-session">3</td><td>09/07</td><td>行列式结束与矩阵回顾</td><td><a href="/files/LAB2/HW2-1.pdf" target="_blank">P98 3,8,9,18</a></td><td rowspan="2">09/20晚</td><td rowspan="2"><a href="/files/LAB2/week2.pdf" target="_blank">week2</a></td></tr>
+            <tr><td class="course-session">4</td><td>09/09</td><td>矩阵相抵与Binet-Cauchy公式</td><td><a href="/files/LAB2/HW2-2.pdf" target="_blank">P87 6; P104 4(3),(4),7,10</a></td></tr>
+            <tr><td rowspan="2">三</td><td class="course-session">5</td><td>09/14</td><td></td><td></td><td rowspan="2"></td><td rowspan="2"></td></tr>
+            <tr><td class="course-session">6</td><td>09/16</td><td></td><td></td></tr>
+            <tr><td rowspan="2">四</td><td class="course-session">7</td><td>09/21</td><td></td><td></td><td rowspan="2"></td><td rowspan="2"></td></tr>
+            <tr><td class="course-session">8</td><td>09/23</td><td></td><td></td></tr>
+            <tr><td rowspan="2">五</td><td class="course-session">9</td><td>09/28</td><td></td><td></td><td rowspan="2"></td><td rowspan="2"></td></tr>
+            <tr><td class="course-session">10</td><td>09/30</td><td></td><td></td></tr>
+            <tr><td rowspan="2">七</td><td class="course-session">11</td><td>10/12</td><td></td><td></td><td rowspan="2"></td><td rowspan="2"></td></tr>
+            <tr><td class="course-session">12</td><td>10/14</td><td></td><td></td></tr>
+            <tr><td rowspan="2">八</td><td class="course-session">13</td><td>10/19</td><td></td><td></td><td rowspan="2"></td><td rowspan="2"></td></tr>
+            <tr><td class="course-session">14</td><td>10/21</td><td></td><td></td></tr>
+            <tr><td rowspan="2">九</td><td class="course-session">15</td><td>10/26</td><td></td><td></td><td rowspan="2"></td><td rowspan="2"></td></tr>
+            <tr><td class="course-session">16</td><td>10/28</td><td></td><td></td></tr>
+            <tr><td rowspan="2">十</td><td class="course-session">17</td><td>11/02</td><td></td><td></td><td rowspan="2"></td><td rowspan="2"></td></tr>
+            <tr><td class="course-session">18</td><td>11/04</td><td></td><td></td></tr>
+            <tr><td rowspan="2">十一</td><td class="course-session">19</td><td>11/09</td><td></td><td></td><td rowspan="2"></td><td rowspan="2"></td></tr>
+            <tr><td class="course-session">20</td><td>11/11</td><td></td><td></td></tr>
+            <tr><td rowspan="2">十二</td><td class="course-session">21</td><td>11/16</td><td></td><td></td><td rowspan="2"></td><td rowspan="2"></td></tr>
+            <tr><td class="course-session">22</td><td>11/18</td><td></td><td></td></tr>
+            <tr><td rowspan="2">十三</td><td class="course-session">23</td><td>11/23</td><td></td><td></td><td rowspan="2"></td><td rowspan="2"></td></tr>
+            <tr><td class="course-session">24</td><td>11/25</td><td></td><td></td></tr>
+            <tr><td rowspan="2">十四</td><td class="course-session">25</td><td>11/30</td><td></td><td></td><td rowspan="2"></td><td rowspan="2"></td></tr>
+            <tr><td class="course-session">26</td><td>12/02</td><td></td><td></td></tr>
+            <tr><td rowspan="2">十五</td><td class="course-session">27</td><td>12/07</td><td></td><td></td><td rowspan="2"></td><td rowspan="2"></td></tr>
+            <tr><td class="course-session">28</td><td>12/09</td><td></td><td></td></tr>
+            <tr><td rowspan="2">十六</td><td class="course-session">29</td><td>12/14</td><td></td><td></td><td rowspan="2"></td><td rowspan="2"></td></tr>
+            <tr><td class="course-session">30</td><td>12/16</td><td></td><td></td></tr>
+            <tr><td rowspan="2">十七</td><td class="course-session">31</td><td>12/21</td><td></td><td></td><td rowspan="2"></td><td rowspan="2"></td></tr>
+            <tr><td class="course-session">32</td><td>12/23</td><td></td><td></td></tr>
+            <tr><td rowspan="2">十八</td><td class="course-session">33</td><td>12/28</td><td></td><td></td><td rowspan="2"></td><td rowspan="2"></td></tr>
+            <tr><td class="course-session">34</td><td>12/30</td><td></td><td></td></tr>
+        </tbody>
+    </table>
+</div>
+<hr style="border: 3px solid #007bff; margin: 20px 0;">
+<div class="note note-secondary">
+            <h2 id="课程资料">课程资料</h2><p>以下是本课程的参考书，其中第一本为主要参考教材：</p><ul><li><a href="/files/LAB2/线性代数(第二版)-李炯生,查建国,王新茂.pdf" target="_blank">线性代数(第二版)-李炯生,查建国,王新茂</a></li><li><a href="/files/LAB2/线性代数-李炯生,查建国 (LaTeX重排版).pdf" target="_blank">线性代数-李炯生,查建国 (LaTeX重排版)</a></li><li><a href="/files/LAB2/线性代数II-陈发来,欧阳毅 (20260830版).pdf" target="_blank">线性代数II-陈发来,欧阳毅 (20260830版)</a></li><li><a href="/files/LAB2/线性代数(2)学习指导-许甫华.pdf" target="_blank">线性代数(2)学习指导-许甫华</a></li><li>线性代数(数学专业用)-李尚志 (文件过大不便上传，见课程群)</a></li><li>线性代数学习指导-李尚志 (文件过大不便上传，见课程群)</a></li></ul><p>以下是本课程的目前的最新版本讲义与课件：</p><ul><li><a href="/files/LAB2/2026线性代数B2讲义.pdf" target="_blank">2026线性代数B2讲义 (20260907版)</a></li><li><a href="/files/LAB2/第一节课的绪论课件.pdf" target="_blank">第一节课的绪论课件</a></li><li><a href="/files/LAB2/第二章-行列式.pdf" target="_blank">第二章-行列式课件</a></li><li><a href="/files/LAB2/第三章-矩阵.pdf" target="_blank">第三章-矩阵课件</a></li></ul><p>课程回放：由于两个班合并，所以老师会先发布前几周的课程回放，课程回放可以在瀚海教学网查看：<a href="https://home.v.ustc.edu.cn/course/18591/lesson#/" target="_blank">课程回放链接</a>，而全部课程的回放预计会在期中与期末前发布。</p>
+          </div>
+<hr style="border: 3px solid #007bff; margin: 20px 0;">
+<div class="note note-info">
+            <h2 id="习题课">习题课</h2><p>习题课讲义会在习题课前后上传至课程群与课程主页。</p>
+          </div>
+<div class="course-table-shell">
+    <table class="course-table course-table--tutorials">
+        <thead>
+            <tr style="background: #4caf50; color: white;">
+                <th style="border: 1px solid #ddd; padding: 10px; font-size: 1.2em;">次数</th>
+                <th style="border: 1px solid #ddd; padding: 10px; font-size: 1.2em;">时间</th>
+                <th style="border: 1px solid #ddd; padding: 10px; font-size: 1.2em;">地点</th>
+                <th style="border: 1px solid #ddd; padding: 10px; font-size: 1.2em;">讲授者</th>
+                <th style="border: 1px solid #ddd; padding: 10px; font-size: 1.2em;">讲义</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>2</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>3</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>4</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>5</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>6</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>7</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>8</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>9</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td colspan="5"><a href="/files/LAB2/course.pdf" target="_blank">作业答案+习题课讲义整合版</a></td></tr>
+        </tbody>
+    </table>
+</div>
+
+  </div>
+
+  
+  
+  
+    <article id="comments" lazyload>
+      
+<link rel="stylesheet" href="/css/waline-mirage.css">
+<div id="mirage-waline" class="mirage-waline"
+  data-server-url="https://mirage-ebon.vercel.app"
+  data-page-path="/26FallLAB2/index.html"
+  data-client-url="/lib/waline/waline.js"
+  data-style-url="/lib/waline/waline.css">
+  <p class="mirage-waline-status" role="status"></p>
+  <button class="mirage-waline-retry" type="button" hidden></button>
+  <div class="mirage-waline-mount"></div>
+</div>
+<script defer src="/js/mirage-waline.js"></script>
+<noscript>请启用JavaScript以查看评论。Please enable JavaScript to view comments.</noscript>
+
+    </article>
+  
+
+
+</article>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span>
+        总访问量 
+        <span id="busuanzi_site_pv">--</span>
+         次
+      </span>
+    
+    
+      <span>
+        总访客数 
+        <span id="busuanzi_site_uv">--</span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+<script src="/js/mirage-i18n.js"></script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" ></script>
+
+
+
+
+  
+<script src="/js/mirage.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
