@@ -12,6 +12,7 @@
     content: 'Content (comments will be displayed after administrator approval)',
     emptyContent: 'Content is required', emptyNickname: 'Nickname is required',
     invalidEmail: 'Please enter a valid email address', confirm: 'OK', submit: 'Send',
+    viewSource: 'View original comment',
     review: 'Your comment has been submitted and is awaiting administrator approval.'
   } : {
     idle: '滚动到此处后加载评论。', loading: '正在加载评论…',
@@ -20,6 +21,7 @@
     content: '内容（评论经管理员审核通过后方可展示）',
     emptyContent: '内容不能为空', emptyNickname: '昵称不能为空',
     invalidEmail: '请输入有效的邮件地址', confirm: '确定', submit: '发送',
+    viewSource: '查看原消息',
     review: '评论已提交，审核通过后方可展示。'
   };
   var status = host.querySelector('.mirage-waline-status');
@@ -154,11 +156,25 @@
       var card = Array.prototype.find.call(item.children, function (child) {
         return child.classList.contains('wl-card');
       });
-      if (!userColumn || !card || !userColumn.querySelector('.administrator-icon')) return;
+      if (!card) return;
       var head = Array.prototype.find.call(card.children, function (child) {
         return child.classList.contains('wl-head');
       });
-      if (!head || head.querySelector('.mirage-waline-admin-badge')) return;
+      if (!head) return;
+
+      var meta = Array.prototype.find.call(card.children, function (child) {
+        return child.classList.contains('wl-meta');
+      });
+      var time = head.querySelector('.wl-time');
+      if (meta) head.insertBefore(meta, time || head.querySelector('.wl-comment-actions'));
+
+      var sourceLink = card.querySelector(':scope > .wl-content > .wl-reply-to a');
+      if (sourceLink) {
+        sourceLink.title = text.viewSource;
+        sourceLink.setAttribute('aria-label', sourceLink.textContent + (english ? ', ' : '，') + text.viewSource);
+      }
+
+      if (!userColumn || !userColumn.querySelector('.administrator-icon') || head.querySelector('.mirage-waline-admin-badge')) return;
       var badge = document.createElement('span');
       badge.className = 'wl-badge mirage-waline-admin-badge';
       badge.textContent = english ? 'ADMIN' : '管理员';

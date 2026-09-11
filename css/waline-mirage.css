@@ -12,6 +12,7 @@
   --mirage-comment-field: rgba(255,255,255,.82);
   --mirage-comment-focus: rgba(255,255,255,.98);
   --mirage-comment-ring: rgba(41,137,184,.18);
+  --mirage-comment-edge-gap: .58rem;
   min-height: 20rem;
   color: var(--waline-text-color);
   font-family: "Avenir Next", "Inter", "PingFang SC", "Microsoft YaHei UI", sans-serif;
@@ -59,15 +60,21 @@ html[data-user-color-scheme="dark"] #mirage-waline {
 }
 #mirage-waline .wl-btn.primary:disabled { cursor: wait; opacity: .62; }
 #mirage-waline button:focus-visible { outline: 3px solid var(--mirage-comment-ring); outline-offset: 2px; }
-#mirage-waline .wl-count { margin-top: .8rem; padding-top: 1.05rem; border-top: 1px solid var(--waline-border-color); }
+#mirage-waline .wl-count {
+  margin-top: .8rem; padding-top: 1.05rem; border-top: 1px solid var(--waline-border-color);
+  color: var(--waline-text-color); font-family: var(--mirage-display); font-size: 1.45rem; font-weight: 400; line-height: 1.35;
+}
 #mirage-waline .wl-cards > .wl-card-item {
-  margin: .85rem 0; padding: 1rem 1.05rem 1rem 1.25rem;
+  margin: .85rem 0; padding: 1rem 1.05rem var(--mirage-comment-edge-gap) 1.25rem;
   border: 1px solid color-mix(in srgb,var(--waline-theme-color) 34%,var(--waline-border-color));
   border-radius: 15px;
   background: linear-gradient(135deg,color-mix(in srgb,var(--waline-bg-color-light) 88%,transparent),color-mix(in srgb,var(--waline-active-color) 7%,transparent));
   box-shadow: 0 10px 26px color-mix(in srgb,var(--mirage-comment-ring) 54%,transparent),inset 0 1px 0 rgba(255,255,255,.1);
 }
-#mirage-waline .wl-card { flex: 1; width: 100%; padding: 0; border-bottom: 0; }
+#mirage-waline .wl-card {
+  position: relative; display: flex; flex: 1; flex-wrap: wrap; align-items: flex-start;
+  width: 0; min-width: 0; padding: 0; border-bottom: 0;
+}
 #mirage-waline .wl-cards .wl-user { flex: 0 0 auto; margin-inline-end: .85rem; }
 #mirage-waline .wl-cards .wl-user .wl-user-avatar {
   display: block; width: 2.65rem; height: 2.65rem; box-sizing: border-box;
@@ -81,27 +88,78 @@ html[data-user-color-scheme="dark"] #mirage-waline {
   inset-inline-start: 1.9rem; top: 1.9rem; width: .95rem; height: .95rem;
   border: 2px solid var(--waline-bg-color); background: var(--waline-bg-color);
 }
-#mirage-waline .wl-head { display: flex; flex-wrap: wrap; align-items: center; }
-#mirage-waline .wl-nick { color: var(--waline-text-color); font-size: 1rem; font-weight: 500; }
-#mirage-waline .wl-time { flex-basis: 100%; margin: .15rem 0 .45rem; color: var(--waline-info-color); font-size: .9rem; }
-#mirage-waline .wl-comment-actions { position: static; margin-left: auto; }
+#mirage-waline .wl-head { display: flex; flex: 1 1 100%; flex-wrap: wrap; align-items: center; overflow: visible; min-width: 0; }
+#mirage-waline .wl-nick { flex: 0 0 auto; margin-inline-end: 0; color: var(--waline-text-color); font-size: 1rem; font-weight: 500; }
+#mirage-waline .wl-time { flex-basis: 100%; margin: .15rem 0 0; color: var(--waline-info-color); font-size: .9rem; }
+#mirage-waline .wl-comment-actions { position: absolute; top: 2.7rem; right: 0; z-index: 1; margin: 0; }
 #mirage-waline .mirage-waline-admin-badge { margin-left: .42rem; color: var(--waline-theme-color); }
-#mirage-waline .wl-meta { display: flex; flex-wrap: wrap; gap: .32rem; margin: 0 0 .55rem; color: var(--waline-info-color); font-size: .78rem; }
+#mirage-waline .wl-meta {
+  display: flex; flex: 0 1 auto; flex-wrap: wrap; align-items: center; gap: .32rem;
+  min-width: 0; margin: .08rem 0 0 .14rem; color: var(--waline-info-color); font-size: .78rem;
+}
 #mirage-waline .wl-meta > span { padding: .12rem .42rem; border: 1px solid var(--waline-border-color); border-radius: 999px; background: var(--waline-bg-color-light); }
-#mirage-waline .wl-content { margin: .3rem 0 .6rem; padding: 0; color: var(--waline-info-color); font-size: 1rem; }
+#mirage-waline .wl-content {
+  flex: 1 1 100%; min-width: 0; margin: .48rem 0 0; padding: 0 5rem 0 0;
+  color: var(--waline-info-color); font-size: 1rem;
+}
 #mirage-waline .wl-content p { margin: .5rem 0; }
+#mirage-waline .wl-content > div > :first-child { margin-top: 0; }
+#mirage-waline .wl-content > div > :last-child { margin-bottom: 0; }
+#mirage-waline .wl-content:has(> .wl-reply-to) { display: flex; align-items: baseline; gap: .35rem; }
+#mirage-waline .wl-content .wl-reply-to {
+  float: none; flex: 0 0 auto; margin: 0; color: var(--waline-info-color); font-size: .86rem; line-height: 1.65;
+}
+#mirage-waline .wl-content .wl-reply-to::before { content: '回复 '; }
+#mirage-waline .wl-content .wl-reply-to > span { display: none; }
+#mirage-waline .wl-content .wl-reply-to a {
+  display: inline-block; max-width: 100%; padding: .08rem .38rem;
+  border: 1px solid var(--waline-border-color); border-radius: 999px;
+  color: var(--waline-theme-color); background: var(--waline-bg-color-light); text-decoration: none; overflow-wrap: anywhere;
+}
+#mirage-waline .wl-content .wl-reply-to a::after { content: ' · 查看原消息'; color: var(--waline-info-color); }
+html[data-mirage-language="en"] #mirage-waline .wl-content .wl-reply-to::before { content: 'Replying to '; }
+html[data-mirage-language="en"] #mirage-waline .wl-content .wl-reply-to a::after { content: ' · View original'; }
+#mirage-waline .wl-content:has(> .wl-reply-to) > div { min-width: 0; }
 #mirage-waline .wl-reply svg { display: none; }
 #mirage-waline .wl-reply::after { content: '回复'; }
 html[data-mirage-language="en"] #mirage-waline .wl-reply::after { content: 'Reply'; }
 #mirage-waline .wl-reply-wrapper { margin-top: 1rem; }
-#mirage-waline .wl-quote { border-left: 1px solid var(--waline-border-color); padding-left: 1rem; }
+#mirage-waline .wl-warning,
+#mirage-waline .wl-admin-actions,
+#mirage-waline .wl-reply-wrapper,
+#mirage-waline .wl-edit-wrapper,
+#mirage-waline .wl-quote { flex: 1 1 100%; width: 100%; }
+#mirage-waline .wl-quote { margin-top: .28rem; padding-left: 0; border-left: 0; }
+#mirage-waline .wl-quote .wl-card-item {
+  margin: .3rem 0 0; padding: .78rem .95rem .48rem;
+  border: 1px solid color-mix(in srgb,var(--waline-theme-color) 30%,var(--waline-border-color));
+  border-radius: 13px;
+  background: linear-gradient(135deg,color-mix(in srgb,var(--waline-bg-color-light) 72%,transparent),color-mix(in srgb,var(--waline-active-color) 5%,transparent));
+  box-shadow: 0 8px 22px color-mix(in srgb,var(--mirage-comment-ring) 42%,transparent),inset 0 1px 0 rgba(255,255,255,.08);
+}
+#mirage-waline .wl-quote > .wl-card-item:first-child { margin-top: 0; }
+#mirage-waline .wl-card-item { scroll-margin-top: 6rem; transition: border-color 180ms ease, box-shadow 180ms ease; }
+#mirage-waline .wl-card-item:target {
+  border-color: color-mix(in srgb,var(--waline-theme-color) 76%,var(--waline-border-color));
+  box-shadow: 0 0 0 3px var(--mirage-comment-ring),0 12px 30px color-mix(in srgb,var(--mirage-comment-ring) 70%,transparent);
+}
 #mirage-waline .wl-power { opacity: .58; }
 @media(max-width:640px) {
   #mirage-waline .wl-header { grid-template-columns: minmax(0,1fr); }
+  #mirage-waline .wl-header-item:not(:last-child) { border-bottom: 0; }
   #mirage-waline label { font-size: .86rem; }
   #mirage-waline .wl-editor { min-height: 7.8rem; }
   #mirage-waline .wl-cards .wl-user { margin-inline-end: .65rem; }
   #mirage-waline .wl-cards .wl-user .wl-user-avatar { width: 2.3rem; height: 2.3rem; }
   #mirage-waline .wl-cards .wl-user .verified-icon,
   #mirage-waline .wl-cards .wl-user .administrator-icon { inset-inline-start: 1.62rem; top: 1.62rem; width: .88rem; height: .88rem; }
+  #mirage-waline .wl-cards > .wl-card-item { padding: .85rem .85rem var(--mirage-comment-edge-gap); }
+  #mirage-waline .wl-quote .wl-card-item { padding: .7rem .75rem .45rem; }
+  #mirage-waline .wl-meta { margin-inline-start: .14rem; margin-inline-end: 0; }
+  #mirage-waline .wl-content { padding-inline-end: 4.4rem; }
+  #mirage-waline .wl-content:has(> .wl-reply-to) { display: block; }
+  #mirage-waline .wl-content .wl-reply-to { margin-bottom: .28rem; }
+  #mirage-waline .wl-content:has(> .wl-reply-to) > div { width: 100%; overflow-wrap: anywhere; }
+  #mirage-waline .wl-quote .wl-content { padding-inline-end: 0; }
+  #mirage-waline .wl-comment-actions { top: 2.55rem; }
 }
