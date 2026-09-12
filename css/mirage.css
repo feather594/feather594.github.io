@@ -1240,7 +1240,7 @@ html[data-default-color-scheme="dark"]:not([data-user-color-scheme]) .markdown-b
   position: relative;
   overflow: hidden;
   margin-top: 2.4rem;
-  padding: 1.4rem 1.5rem 1.55rem;
+  padding: 1.4rem 1.5rem 0.8rem;
   border: 1px solid var(--mirage-border);
   border-left: 3px solid var(--mirage-cyan);
   border-radius: 22px;

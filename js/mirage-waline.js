@@ -168,7 +168,27 @@
       var time = head.querySelector('.wl-time');
       if (meta) head.insertBefore(meta, time || head.querySelector('.wl-comment-actions'));
 
+      var content = Array.prototype.find.call(card.children, function (child) {
+        return child.classList.contains('wl-content');
+      });
+      var contentRow = Array.prototype.find.call(card.children, function (child) {
+        return child.classList.contains('mirage-waline-content-row');
+      });
+      var actions = head.querySelector('.wl-comment-actions') ||
+        (contentRow && contentRow.querySelector(':scope > .wl-comment-actions'));
+      if (content && actions) {
+        if (!contentRow) {
+          contentRow = document.createElement('div');
+          contentRow.className = 'mirage-waline-content-row';
+          content.before(contentRow);
+        }
+        contentRow.append(content, actions);
+      }
+
       var sourceLink = card.querySelector(':scope > .wl-content > .wl-reply-to a');
+      if (!sourceLink && contentRow) {
+        sourceLink = contentRow.querySelector(':scope > .wl-content > .wl-reply-to a');
+      }
       if (sourceLink) {
         sourceLink.title = text.viewSource;
         sourceLink.setAttribute('aria-label', sourceLink.textContent + (english ? ', ' : '，') + text.viewSource);
