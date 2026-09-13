@@ -12,7 +12,7 @@
     content: 'Content (comments will be displayed after administrator approval)',
     emptyContent: 'Content is required', emptyNickname: 'Nickname is required',
     invalidEmail: 'Please enter a valid email address', confirm: 'OK', submit: 'Send',
-    viewSource: 'View original comment',
+    viewSource: 'Original comment',
     review: 'Your comment has been submitted and is awaiting administrator approval.'
   } : {
     idle: '滚动到此处后加载评论。', loading: '正在加载评论…',

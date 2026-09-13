@@ -71,8 +71,12 @@ html[data-user-color-scheme="dark"] #mirage-waline {
 }
 #mirage-waline .wl-btn.primary:disabled { cursor: wait; opacity: .62; }
 #mirage-waline button:focus-visible { outline: 3px solid var(--mirage-comment-ring); outline-offset: 2px; }
+#mirage-waline .wl-meta-head {
+  align-items: flex-end; margin-top: .8rem; padding: 1.05rem 0 0;
+  border-top: 1px solid var(--waline-border-color);
+}
 #mirage-waline .wl-count {
-  margin-top: .8rem; padding-top: 1.05rem; border-top: 1px solid var(--waline-border-color);
+  margin: 0; padding: 0; border-top: 0;
   color: var(--waline-text-color); font-family: var(--mirage-display); font-size: 1.45rem; font-weight: 400; line-height: 1.35;
 }
 #mirage-waline .wl-cards > .wl-card-item {
@@ -122,26 +126,32 @@ html[data-user-color-scheme="dark"] #mirage-waline {
 #mirage-waline .wl-content p { margin: .5rem 0; }
 #mirage-waline .wl-content > div > :first-child { margin-top: 0; }
 #mirage-waline .wl-content > div > :last-child { margin-bottom: 0; }
-#mirage-waline .wl-content:has(> .wl-reply-to) { display: flex; align-items: baseline; gap: .35rem; }
+#mirage-waline .wl-content:has(> .wl-reply-to) { display: block; line-height: 1.65; }
 #mirage-waline .wl-content .wl-reply-to {
-  float: none; flex: 0 0 auto; margin: 0; color: var(--waline-info-color); font-size: .86rem; line-height: 1.65;
+  display: inline; float: none; margin: 0 .24rem 0 0;
+  color: var(--waline-info-color); font-size: 1rem; line-height: 1.65; vertical-align: middle;
 }
 #mirage-waline .wl-content .wl-reply-to::before { content: '回复 '; }
 #mirage-waline .wl-content .wl-reply-to > span { display: none; }
 #mirage-waline .wl-content .wl-reply-to a {
-  display: inline-block; max-width: 100%; padding: .08rem .38rem;
+  display: inline-flex; max-width: 100%; padding: .04rem .3rem;
   border: 1px solid var(--waline-border-color); border-radius: 999px;
-  color: var(--waline-theme-color); background: var(--waline-bg-color-light); text-decoration: none; overflow-wrap: anywhere;
+  color: var(--waline-theme-color); background: var(--waline-bg-color-light);
+  font-size: .82rem; line-height: 1.45; text-decoration: none; vertical-align: .06rem; white-space: nowrap;
 }
 #mirage-waline .wl-content .wl-reply-to a::after { content: ' · 查看原消息'; color: var(--waline-info-color); }
 html[data-mirage-language="en"] #mirage-waline .wl-content .wl-reply-to::before { content: 'Replying to '; }
-html[data-mirage-language="en"] #mirage-waline .wl-content .wl-reply-to a::after { content: ' · View original'; }
-#mirage-waline .wl-content:has(> .wl-reply-to) > div { min-width: 0; }
+html[data-mirage-language="en"] #mirage-waline .wl-content .wl-reply-to a::after { content: ' · Original'; }
+#mirage-waline .wl-content:has(> .wl-reply-to) > div { display: inline; min-width: 0; overflow-wrap: anywhere; vertical-align: middle; }
+#mirage-waline .wl-content:has(> .wl-reply-to) > div > p:first-child { display: inline; }
 #mirage-waline .wl-reply svg { display: none; }
 #mirage-waline .wl-reply::after { content: '回复'; }
 html[data-mirage-language="en"] #mirage-waline .wl-reply::after { content: 'Reply'; }
 #mirage-waline .wl-reply-wrapper { margin-top: 1rem; }
-#mirage-waline .wl-warning,
+#mirage-waline .wl-warning {
+  flex: 1 1 100%; box-sizing: border-box; width: 100%; margin: .32rem 0 0;
+}
+#mirage-waline .wl-warning + .mirage-waline-content-row { margin-top: .32rem; }
 #mirage-waline .wl-admin-actions,
 #mirage-waline .wl-reply-wrapper,
 #mirage-waline .wl-edit-wrapper { flex: 1 1 100%; width: 100%; }
@@ -180,7 +190,4 @@ html[data-mirage-language="en"] #mirage-waline .wl-reply::after { content: 'Repl
   #mirage-waline .wl-cards .wl-user .verified-icon,
   #mirage-waline .wl-cards .wl-user .administrator-icon { inset-inline-start: 1.62rem; top: 1.62rem; width: .88rem; height: .88rem; }
   #mirage-waline .wl-meta { margin-inline-start: .14rem; margin-inline-end: 0; }
-  #mirage-waline .wl-content:has(> .wl-reply-to) { display: block; }
-  #mirage-waline .wl-content .wl-reply-to { margin-bottom: .28rem; }
-  #mirage-waline .wl-content:has(> .wl-reply-to) > div { width: 100%; overflow-wrap: anywhere; }
 }
